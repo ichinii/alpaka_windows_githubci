@@ -46,4 +46,4 @@ jobs:
         working-directory: ${{github.workspace}}/build
         run: |
           dir
-          ./exe
+          ./Debug/exe
