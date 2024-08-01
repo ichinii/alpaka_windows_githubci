@@ -7,9 +7,6 @@ using Vec = alpaka::Vec<Dim, Idx>;
 using AccCpu = alpaka::AccCpuSerial<Dim, Idx>;
 using QueueCpu = alpaka::Queue<AccCpu, alpaka::NonBlocking>;
 
-using AccGpu = alpaka::AccGpuCudaRt<Dim, Idx>;
-using QueueGpu = alpaka::Queue<AccGpu, alpaka::NonBlocking>;
-
 struct Kernel {
     template <typename TAcc>
     ALPAKA_FN_ACC

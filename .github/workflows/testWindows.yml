@@ -36,14 +36,14 @@ jobs:
             INPUT_CUDA_VERSION: 12.5.1
 
       - name: Configure CMake
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -Dalpaka_ACC_CPU_B_SEQ_T_SEQ_ENABLE=ON -Dalpaka_ACC_GPU_CUDA_ENABLE=ON
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -Dalpaka_ACC_CPU_B_SEQ_T_SEQ_ENABLE=ON
 
       - name: Build
         run: |
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
       - name: Run
-        working-directory: ${{github.workspace}}/build
+        working-directory: ${{github.workspace}}/build/${{env.BUILD_TYPE}}
         run: |
           dir
-          ./Debug/exe
+          ./exe
