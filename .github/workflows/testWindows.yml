@@ -44,4 +44,6 @@ jobs:
 
       - name: Run
         working-directory: ${{github.workspace}}/build
-        run: ./exe
+        run: |
+          dir
+          ./exe
