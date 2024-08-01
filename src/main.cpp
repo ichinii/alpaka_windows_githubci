@@ -7,6 +7,9 @@ using Vec = alpaka::Vec<Dim, Idx>;
 using AccCpu = alpaka::AccCpuSerial<Dim, Idx>;
 using QueueCpu = alpaka::Queue<AccCpu, alpaka::NonBlocking>;
 
+using AccGpu = alpaka::AccGpuCudaRt<Dim, Idx>;
+using QueueGpu = alpaka::Queue<AccGpu, alpaka::NonBlocking>;
+
 struct Kernel {
     template <typename TAcc>
     ALPAKA_FN_ACC
@@ -21,13 +24,13 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     assert(0 < count);
 
     const auto N = static_cast<Idx>(1 << 10);
-    const auto platform = alpaka::Platform<AccCpu>();
+    const auto platform = alpaka::Platform<AccGpu>();
     const auto acc = alpaka::getDevByIdx(platform, 0);
-    auto d_q = alpaka::Queue<AccCpu, alpaka::Blocking>(acc);
+    auto d_q = alpaka::Queue<AccGpu, alpaka::Blocking>(acc);
 
-    alpaka::exec<AccCpu>(
+    alpaka::exec<AccGpu>(
         d_q,
-        alpaka::getValidWorkDiv<AccCpu>(acc, N),
+        alpaka::getValidWorkDiv<AccGpu>(acc, N),
         Kernel{}
     );
 
