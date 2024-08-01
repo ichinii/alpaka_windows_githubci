@@ -24,13 +24,13 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     assert(0 < count);
 
     const auto N = static_cast<Idx>(1 << 10);
-    const auto platform = alpaka::Platform<AccGpu>();
+    const auto platform = alpaka::Platform<AccCpu>();
     const auto acc = alpaka::getDevByIdx(platform, 0);
-    auto d_q = alpaka::Queue<AccGpu, alpaka::Blocking>(acc);
+    auto d_q = alpaka::Queue<AccCpu, alpaka::Blocking>(acc);
 
-    alpaka::exec<AccGpu>(
+    alpaka::exec<AccCpu>(
         d_q,
-        alpaka::getValidWorkDiv<AccGpu>(acc, N),
+        alpaka::getValidWorkDiv<AccCpu>(acc, N),
         Kernel{}
     );
 
