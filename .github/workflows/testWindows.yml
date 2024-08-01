@@ -1,6 +1,6 @@
 name: testWindows
 
-on: [push, pull_request]
+on: [push]
 
 env:
   BUILD_TYPE: Debug

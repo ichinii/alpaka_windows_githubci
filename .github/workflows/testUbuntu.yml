@@ -1,6 +1,6 @@
 name: testUbuntu
 
-on: [push, pull_request]
+on: [push]
 
 env:
   BUILD_TYPE: Debug
@@ -13,17 +13,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
-
-      - name: Make some space
-        run: |
-          df -h
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/share/swift
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/hostedtoolcache
-          sudo rm -rf /opt/ghc
-          sudo rm -rf /opt/az
-          df -h
 
       - name: Install dependencies
         run: |
